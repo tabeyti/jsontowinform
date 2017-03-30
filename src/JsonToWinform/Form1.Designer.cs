@@ -28,22 +28,16 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+      this.components = new System.ComponentModel.Container();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.NLogTextBox = new System.Windows.Forms.RichTextBox();
+      this.treeListView1 = new BrightIdeasSoftware.TreeListView();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).BeginInit();
       this.SuspendLayout();
-      // 
-      // FlowLayoutPanel
-      // 
-      this.FlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.FlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-      this.FlowLayoutPanel.Name = "FlowLayoutPanel";
-      this.FlowLayoutPanel.Size = new System.Drawing.Size(463, 540);
-      this.FlowLayoutPanel.TabIndex = 0;
       // 
       // splitContainer1
       // 
@@ -53,7 +47,7 @@
       // 
       // splitContainer1.Panel1
       // 
-      this.splitContainer1.Panel1.Controls.Add(this.FlowLayoutPanel);
+      this.splitContainer1.Panel1.Controls.Add(this.treeListView1);
       // 
       // splitContainer1.Panel2
       // 
@@ -71,6 +65,30 @@
       this.NLogTextBox.TabIndex = 0;
       this.NLogTextBox.Text = "";
       // 
+      // treeListView1
+      // 
+      this.treeListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.treeListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+      this.treeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.treeListView1.GridLines = true;
+      this.treeListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+      this.treeListView1.IncludeHiddenColumnsInDataTransfer = true;
+      this.treeListView1.Location = new System.Drawing.Point(0, 0);
+      this.treeListView1.MultiSelect = false;
+      this.treeListView1.Name = "treeListView1";
+      this.treeListView1.RowHeight = 20;
+      this.treeListView1.ShowCommandMenuOnRightClick = true;
+      this.treeListView1.ShowGroups = false;
+      this.treeListView1.Size = new System.Drawing.Size(463, 540);
+      this.treeListView1.TabIndex = 0;
+      this.treeListView1.UseCellFormatEvents = true;
+      this.treeListView1.UseCompatibleStateImageBehavior = false;
+      this.treeListView1.UseHotItem = true;
+      this.treeListView1.View = System.Windows.Forms.View.Details;
+      this.treeListView1.VirtualMode = true;
+      this.treeListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.treeListView1_CellRightClick);
+      this.treeListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.treeListView1_FormatCell);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,15 +102,15 @@
       this.splitContainer1.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
       this.splitContainer1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).EndInit();
       this.ResumeLayout(false);
 
     }
 
     #endregion
-
-    private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel;
     private System.Windows.Forms.SplitContainer splitContainer1;
     private System.Windows.Forms.RichTextBox NLogTextBox;
+    private BrightIdeasSoftware.TreeListView treeListView1;
   }
 }
 
