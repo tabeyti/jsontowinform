@@ -1,14 +1,7 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NLog;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JsonToWinform
@@ -57,7 +50,7 @@ namespace JsonToWinform
       var text = System.IO.File.ReadAllText("D:/temp/transform.json");
 
       var node = JToken.Parse(text);
-      var root = new JsonConfigNode("root", null, node);
+      var root = new JsonConfigNode("root", null, JTokenType.Object);
       WalkNode(node, root);
       _rootNode = root;
     }
@@ -76,7 +69,7 @@ namespace JsonToWinform
         var i = 0;
         foreach (var child in node.Children())
         {
-          var item = new JsonConfigNode($"[{i}]", null, child);
+          var item = new JsonConfigNode($"[{i}]", null, child.Type);
           currentNode.Children.Add(item);
           WalkNode(child, item);
           i++;
@@ -84,8 +77,11 @@ namespace JsonToWinform
       }
       else if (node.Type == JTokenType.Property)
       {
-        var prop = new JsonConfigNode(((JProperty)node).Name, null, node);
+        var c = node.Children()[0];
+        var prop = new JsonConfigNode(((JProperty)node).Name, null, JTokenType.Object);
         currentNode.Children.Add(prop);
+        var list = new List<JToken>();
+
         foreach (var child in node.Children())
         {
           WalkNode(child, prop);
@@ -148,12 +144,12 @@ namespace JsonToWinform
   {
     public string Key { get; set; }
     public object Value { get; set; }
-    public JToken Token { get; set; }
+    public JTokenType ValueType { get; set; }
     public List<JsonConfigNode> Children { get; set; }
 
-    public JsonConfigNode(string key, object value, JToken token)
+    public JsonConfigNode(string key, object value, JTokenType type)
     {
-      this.Token = token;
+      this.ValueType = type;
       this.Key = key;
       this.Value = value;
       this.Children = new List<JsonConfigNode>();
